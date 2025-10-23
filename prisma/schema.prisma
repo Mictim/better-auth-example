@@ -8,6 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  EMPLOYEE
+  ADMIN
+}
+
 model User {
   id               String      @id @default(cuid())
   name             String
@@ -19,6 +25,7 @@ model User {
   twoFactorEnabled Boolean     @default(false)
   username         String?
   displayUsername  String?
+  role             Role        @default(USER)
   Session          Session[]
   Account          Account[]
   TwoFactor        TwoFactor[]
