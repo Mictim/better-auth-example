@@ -1,6 +1,6 @@
 // components/auth/sign-up.tsx
 "use client"
-import React from 'react'
+
 import CardWrapper from '../card-wrapper'
 import FormError from '../form-error'
 import { FormSuccess } from '../form-success'

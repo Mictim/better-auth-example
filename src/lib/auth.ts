@@ -10,7 +10,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import {
   twoFactor
 } from "better-auth/plugins";
-import { validator, StandardAdapter } from "validation-better-auth";
+import { validator } from "validation-better-auth";
 
 export const auth = betterAuth({
   appName: "better_auth_nextjs",
@@ -25,7 +25,7 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url, token }, request) => {
       await email.sendMail({
-        from: "Lawhub <info@lawhub.pl>",
+        from: "Lawhub <test@lawhub.pl>",
         to: user.email,
         subject: "Reset your password",
         html: `Click the link to reset your password: ${url}`,
@@ -37,7 +37,7 @@ export const auth = betterAuth({
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, url }) => {
       await email.sendMail({
-        from: "Lawhub <info@lawhub.pl>",
+        from: "Lawhub <test@lawhub.pl>",
         to: user.email,
         subject: "Email Verification",
         html: `Click the link to verify your email: ${url}`,
@@ -54,7 +54,7 @@ export const auth = betterAuth({
       otpOptions: {
         async sendOTP({ user, otp }) {
           await email.sendMail({
-            from: "Lawhub <info@lawhub.pl>",
+            from: "Lawhub <test@lawhub.pl>",
             to: user.email,
             subject: "Two Factor",
             html: `Your OTP is ${otp}`,
@@ -64,12 +64,18 @@ export const auth = betterAuth({
       skipVerificationOnEnable: true,
     }),
     validator([
-      { path: "/sign-up/email", adapter: StandardAdapter(SignupSchema) },
-      { path: "/sign-in/email", adapter: StandardAdapter(SignInSchema) },
-      { path: "/two-factor/enable", adapter: StandardAdapter(PasswordSchema) },
-      { path: "/two-factor/disable", adapter: StandardAdapter(PasswordSchema) },
-      { path: "/two-factor/verify-otp", adapter: StandardAdapter(twoFactorSchema) },
-      { path: "/forgot-password", adapter: StandardAdapter(ForgotPasswordSchema) },
+      // { path: "/sign-up/email", adapter: YupAdapter(SignupSchema) },
+      // { path: "/sign-in/email", adapter: YupAdapter(SignInSchema) },
+      // { path: "/two-factor/enable", adapter: YupAdapter(PasswordSchema) },
+      // { path: "/two-factor/disable", adapter: YupAdapter(PasswordSchema) },
+      // { path: "/two-factor/verify-otp", adapter: YupAdapter(twoFactorSchema) },
+      // { path: "/forgot-password", adapter: YupAdapter(ForgotPasswordSchema) },
+      { path: "/sign-up/email", schema: SignupSchema },
+      { path: "/sign-in/email", schema: SignInSchema },
+      { path: "/two-factor/enable", schema: PasswordSchema },
+      { path: "/two-factor/disable", schema: PasswordSchema },
+      { path: "/two-factor/verify-otp", schema: twoFactorSchema },
+      { path: "/forgot-password", schema: ForgotPasswordSchema },
     ])
   ],
 });

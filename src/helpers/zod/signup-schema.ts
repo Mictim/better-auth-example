@@ -14,7 +14,6 @@ export const SignupSchema = z
       .min(2, { message: "Minimum 2 characters are required" })
       .max(20, { message: "Maximum of 20 characters are allowed" }),
     email: z
-      .string()
       .email({ message: "Invalid email address" })
       .min(1, { message: "Email is required" }),
     password: z
