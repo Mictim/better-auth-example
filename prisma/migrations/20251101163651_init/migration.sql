@@ -9,7 +9,7 @@ CREATE TABLE "user" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "twoFactorEnabled" BOOLEAN NOT NULL DEFAULT false,
     "username" TEXT,
-    "isAnonymous" BOOLEAN,
+    "displayUsername" TEXT,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
