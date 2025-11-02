@@ -1,4 +1,3 @@
-import { all } from './../../node_modules/effect/src/Brand';
 // src/lib/auth-client.ts
 import { bearer, openAPI, twoFactorClient } from "better-auth/plugins";
 import { createAuthClient } from "better-auth/react";
