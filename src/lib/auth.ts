@@ -81,12 +81,6 @@ export const auth = betterAuth({
       skipVerificationOnEnable: true,
     }),
     validator([
-      // { path: "/sign-up/email", adapter: YupAdapter(SignupSchema) },
-      // { path: "/sign-in/email", adapter: YupAdapter(SignInSchema) },
-      // { path: "/two-factor/enable", adapter: YupAdapter(PasswordSchema) },
-      // { path: "/two-factor/disable", adapter: YupAdapter(PasswordSchema) },
-      // { path: "/two-factor/verify-otp", adapter: YupAdapter(twoFactorSchema) },
-      // { path: "/forgot-password", adapter: YupAdapter(ForgotPasswordSchema) },
       { path: "/sign-up/email", schema: SignupSchema },
       { path: "/sign-in/email", schema: SignInSchema },
       { path: "/two-factor/enable", schema: PasswordSchema },
